@@ -1,2 +1,18 @@
-<h1>Users index</h1>
-
+<ul class='user_list'>
+  <% @users.each do |user| %>
+    <li class='user_row'>
+      <a href='users/<%= user.id %>'>
+        <img class='user_image' src="<%= user.photo %>">
+      </a>
+      <ul class='flex_block_row'>
+        <li>Name:<br>
+          <%= user.name %></li>
+        <li>Number of posts:<br>
+          <%user.posts_counter = 0 if !user.posts_counter%>
+          <%= user.posts_counter%></li>
+        <li>Added on:<br>
+          <%= user.created_at%></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
