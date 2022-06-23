@@ -1,1 +1,17 @@
-<h1>users show</h1>
+<%= render "/current_user_heding" %>
+<div class='flex_block_row'>
+  <p>Bio:<br>
+    <%= @user.bio%></p>
+</div>
+<% @three_posts.each do |post| %>
+  <ul class='flex_block_row'>
+    <li>Post <%= post.id %> </li>
+    <li><%= post.title %><br>
+      <%= post.text%></li>
+    <li>Likes:<%= post.likes_counter%></li>
+    <li>Comments:<%= post.comments_counter%></li>
+  </ul>
+<% end %>
+<a href='<%= @user.id %>/posts'>
+  <p class='flex_block_row'>See all posts</p>
+</a>
