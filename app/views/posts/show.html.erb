@@ -12,6 +12,7 @@
   <%= form.submit "Like"%>
 <% end %>
 <h3 class='comments_heading'>Comments:</h3>
+<%= link_to "New Comment", new_user_post_comment_path(@user, @post), class:'link' %>
 <% @comments.each do |comment| %>
   <ul class='comment_list'>
     <li><%= comment.text %></li>
