@@ -6,6 +6,9 @@
   <li>Likes:<%= @post.likes_counter%></li>
   <li>Comments:<%= @post.comments_counter%></li>
 </ul>
+<%= form_with model: [@user, @post, @like]  do |form| %>
+  <%= form.submit "Like"%>
+<% end %>
 <h3 class='comments_heading'>Comments:</h3>
 <% @comments.each do |comment| %>
   <ul class='comment_list'>
