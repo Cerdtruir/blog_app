@@ -1,0 +1,6 @@
+<h1 class='form_header'>Add a comment</h1>
+<%= form_with model: [@user, @post, @comment] do |form| %>
+  <%= form.label :text %>
+  <%= form.text_area :text %>
+  <%= form.submit %>
+<% end %>
