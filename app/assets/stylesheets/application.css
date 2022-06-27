@@ -82,3 +82,24 @@ ul {
   align-items: center;
   border: 1px solid #ccc;
 }
+
+.form_header {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+.link {
+  size: 20px;
+  display: block;
+  color: #000;
+  text-align: center;
+  width: 100%;
+  margin: 10px auto 10px auto;
+}
