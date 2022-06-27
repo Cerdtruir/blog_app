@@ -1,8 +1,10 @@
 <%= render "/current_user_heding" %>
 <h2 class='post_heading'>Post <%= @post.id %></h2>
 <ul class='flex_block_row'>
-  <li><%= @post.title %><br>
-    <%= @post.text%></li>
+  <li>
+    <h3><%= @post.title %></h3>
+    <p><%= @post.text%></p>
+  </li>
   <li>Likes:<%= @post.likes_counter%></li>
   <li>Comments:<%= @post.comments_counter%></li>
 </ul>
