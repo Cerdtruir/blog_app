@@ -1,4 +1,9 @@
 <%= render "/current_user_heding" %>
+<% flash.each do |type, msg| %>
+  <div class='flex_block_row'>
+    <%= msg %>
+  </div>
+<% end %>
 <h2 class='post_heading'>Post <%= @post.id %></h2>
 <ul class='flex_block_row'>
   <li>

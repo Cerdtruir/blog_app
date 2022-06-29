@@ -20,8 +20,9 @@ class PostsController < ApplicationController
     @user = current_user
     @post = Post.new(post_params)
     if @post.save
-      redirect_to user_post_path(@user, @post)
+      redirect_to user_post_path(@user, @post), notice: 'Post created successfully'
     else
+      flash.notice = 'Error: Post not created'
       render :new, status: 422
     end
   end

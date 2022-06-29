@@ -10,8 +10,9 @@ class CommentsController < ApplicationController
     @user = User.find(params[:user_id])
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to user_post_path(@user, @post)
+      redirect_to user_post_path(@user, @post), notice: 'Post created successfully'
     else
+      flash.notice = 'Error: Post not created'
       render :new, status: 422
     end
   end
