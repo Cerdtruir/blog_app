@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @three_posts = User.find(params[:id]).show_3_posts
-    @all_posts = User.find(params[:id]).posts
+    @user = User.includes(:posts).find(params[:id])
+    @three_posts = @user.show_3_posts
+    @all_posts = @user.posts
   end
 end
