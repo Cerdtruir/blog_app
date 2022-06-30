@@ -32,6 +32,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.includes(:comments).find(params[:id])
+    @post.comments.destroy_all
+    @post.likes.destroy_all
+    @post.destroy
+    redirect_to '/', notice: 'Post deleted successfully'
+  end
+
   private
 
   def post_params
