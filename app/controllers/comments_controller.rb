@@ -1,12 +1,16 @@
 class CommentsController < ApplicationController
   def new
-    @user = User.includes(:posts).find(params[:user_id])
-    @post = @user.posts.find(params[:post_id])
-    @comment = Comment.new
+    if user_signed_in?
+      @user = current_user
+      @post = @user.posts.find(params[:post_id])
+      @comment = Comment.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
-    @user = User.includes(:posts).find(params[:user_id])
+    @user = current_user
     @post = @user.posts.find(params[:post_id])
     @comment = Comment.new(comment_params)
     if @comment.save
