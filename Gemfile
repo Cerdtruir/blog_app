@@ -50,6 +50,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'debug', '>= 1.0.0'
+  gem 'devise'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0.rc1'
 end
