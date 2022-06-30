@@ -49,6 +49,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'cancancan'
   gem 'debug', '>= 1.0.0'
   gem 'devise'
   gem 'rails-controller-testing'
