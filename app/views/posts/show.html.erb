@@ -16,6 +16,11 @@
 <%= form_with model: [@user, @post, @like]  do |form| %>
   <%= form.submit "Like"%>
 <% end %>
+<% if can? :destroy, @post %>
+  <%= form_with model: [@user, @post], method: :delete  do |form| %>
+    <%= form.submit "Delete"%>
+  <% end %>
+<% end %>
 <h3 class='comments_heading'>Comments:</h3>
 <%= link_to "New Comment", new_user_post_comment_path(@user, @post), class:'link' %>
 <% @post.comments.each do |comment| %>
