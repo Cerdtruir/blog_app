@@ -11,8 +11,6 @@ class PostsController < ApplicationController
   end
 
   def new
-    # @user = current_user if user_signed_in?
-    # befored_action :authenticate_user
     if user_signed_in?
       @user = current_user
       @post = Post.new
