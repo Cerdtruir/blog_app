@@ -27,5 +27,10 @@
   <ul class='comment_list'>
     <li><%= comment.text %></li>
     <li>Added on:<%= comment.created_at%></li>
+    <% if can? :destroy, comment %>
+      <%= form_with model: [@user, @post, comment], method: :delete  do |form| %>
+        <%= form.submit "Delete"%>
+      <% end %>
+    <% end %>
   </ul>
 <% end %>
