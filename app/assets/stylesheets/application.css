@@ -14,6 +14,21 @@
  *= require_self
  */
 
+ h1 {
+  text-align: center;
+ }
+
+.header_nav {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 ul {
   list-style: none;
   padding: 0;
