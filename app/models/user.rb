@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def show_3_posts
     posts.order('created_at DESC').limit(3)
   end
+
+  def admin?
+    true if role == 'admin'
+  end
 end
