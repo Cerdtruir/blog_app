@@ -9,6 +9,8 @@ class Post < ApplicationRecord
 
   after_save :update_post_counter
 
+  paginates_per 5
+
   def show_5_comments
     comments.order('created_at DESC').limit(5)
   end
