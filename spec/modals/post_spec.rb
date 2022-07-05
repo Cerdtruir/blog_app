@@ -2,9 +2,12 @@ require_relative '../rails_helper'
 require_relative '../spec_helper'
 
 describe Post, type: :modal do
-  user = User.create(name: 'fadfasd', photo: 'a.jpeg', bio: 'Example bio', posts_counter: 0)
+  user = User.new(email: 'eweqqwdsc1@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
+                  photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
+
   subject do
-    Post.new(author: user, title: 'Example title', text: 'Example subject', comments_counter: 0, likes_counter: 0)
+    Post.create(author: User.last, title: 'Example title1', text: 'Example subject', comments_counter: 0,
+                likes_counter: 0)
   end
 
   it 'should be valid when parameters are correct' do
@@ -62,10 +65,13 @@ describe Post, type: :modal do
   end
 
   context 'show_5_comments' do
-    post = Post.new(author: user, title: 'Example title', text: 'Example subject', comments_counter: 0,
-                    likes_counter: 0)
-
     it 'should return 5 comments sorted by newest first' do
+      user = User.create(email: 'user2adqwd@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
+                         photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
+
+      post = Post.create(author: user, title: 'Example title1', text: 'Example subject', comments_counter: 0,
+                         likes_counter: 0)
+
       comments = []
       14.times do
         comments << Comment.create!(author: user, post:, text: 'Example comment')
@@ -77,14 +83,15 @@ describe Post, type: :modal do
 
   context 'update_post_counter' do
     it 'should update posts_counter of author' do
-      user = User.create(name: 'fadfasd', photo: 'a.jpeg', bio: 'Example bio', posts_counter: 0)
+      user3 = User.create!(email: 'user12ew@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
+                           photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
 
-      expect(user.posts_counter).to eq(0)
+      expect(user3.posts_counter).to eq(0)
 
-      Post.create(author: user, title: 'Example title', text: 'Example subject', comments_counter: 0,
+      Post.create(author: user3, title: 'Example title1', text: 'Example subject', comments_counter: 0,
                   likes_counter: 0)
 
-      expect(user.posts_counter).to eq(1)
+      expect(user3.posts_counter).to eq(1)
     end
   end
 end

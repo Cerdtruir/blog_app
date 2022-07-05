@@ -20,7 +20,8 @@ describe 'Users', type: :request do
 
     context 'when getting show page' do
       let!(:user) do
-        User.create(name: 'fadfasd', photo: 'a.jpeg', bio: 'Example bio', posts_counter: 0)
+        user = User.create!(email: 'userdasadf1@example.com', password: 'password', name: 'fadfasd', photo: 'a.jpeg', bio: 'Example bio',
+                            posts_counter: 0)
       end
 
       it 'should return a correct response' do

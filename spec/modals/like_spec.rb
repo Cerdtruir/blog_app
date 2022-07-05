@@ -4,8 +4,9 @@ require_relative '../spec_helper'
 describe Like, type: :modal do
   context 'update_likes_counter' do
     it 'should update likes_counter of author' do
-      user = User.create(name: 'fadfasd', photo: 'a.jpeg', bio: 'Example bio', posts_counter: 0)
-      post = Post.create(author: user, title: 'Example title', text: 'Example subject', comments_counter: 0,
+      user = User.create(email: 'userqwesad1asd@example.com', password: 'password', name: 'Example User1',
+                         posts_counter: 0, photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
+      post = Post.create(author: user, title: 'Example title1', text: 'Example subject', comments_counter: 0,
                          likes_counter: 0)
 
       expect(post.likes_counter).to eq(0)

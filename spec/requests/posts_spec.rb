@@ -3,7 +3,8 @@ require_relative '../spec_helper'
 
 describe 'Posts', type: :request do
   let!(:user) do
-    User.create(name: 'fadfasd', photo: 'a.jpeg', bio: 'Example bio', posts_counter: 0)
+    User.create(email: 'user1asdad@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
+                photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
   end
 
   context 'when getting index' do
