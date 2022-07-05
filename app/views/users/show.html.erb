@@ -6,7 +6,7 @@
 </div>
 <% @three_posts.each do |post| %>
   <ul class='flex_block_row'>
-    <li>Post <%= post.id %> </li>
+    <li><a href='/users/<%= @user.id %>/posts/<%= post.id %>'>Post <%= post.id %></a> </li>
     <li>
       <h3><%= post.title %></h3>
       <p><%= post.text%></p>
