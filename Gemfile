@@ -50,6 +50,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'cancancan'
+  gem 'capybara'
   gem 'debug', '>= 1.0.0'
   gem 'devise'
   gem 'kaminari'
