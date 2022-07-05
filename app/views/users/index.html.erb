@@ -1,7 +1,7 @@
 <ul class='user_list'>
   <% @users.each do |user| %>
     <li class='user_row'>
-      <a href='/users/<%= user.id %>'>
+      <a id="user-link-<%= user.name %>" href='/users/<%= user.id %>'>
         <img class='user_image' src="<%= user.photo %>">
       </a>
       <ul class='flex_block_row'>
