@@ -32,3 +32,5 @@
 
 .stylelintrc.json
 .rubocop.yml
+node_modules
+package-lock.json
