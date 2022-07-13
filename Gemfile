@@ -56,6 +56,7 @@ group :development, :test do
   gem 'kaminari'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0.rc1'
+  gem 'rswag'
 end
 
 group :development do
