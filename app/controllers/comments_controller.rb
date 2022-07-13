@@ -3,6 +3,16 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    @user = User.includes(:posts).find(params[:user_id])
+    @post = @user.posts.includes(:comments).find(params[:post_id])
+    respond_to do |format|
+      format.json do
+        render json: @post.comments
+      end
+    end
+  end
+
   def new
     @user = current_user
     @post = Post.find(params[:post_id])
