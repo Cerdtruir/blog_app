@@ -4,28 +4,28 @@ require_relative '../spec_helper'
 describe 'post index', type: :feature do
   context 'display the user details' do
     it 'displays the user name' do
-      user = User.create(email: 'userqweqwdsc1@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
-                         photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
+      user = User.create(email: 'userqweqwdsc1@example.com', password: 'password', name: 'Example User1',
+                         posts_counter: 0, photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
 
-      visit "/users/#{User.last.id}/posts"
+      visit "/users/#{user.id}/posts"
 
       expect(page).to have_content('Example User1')
     end
 
     it 'displays the user photo' do
-      user = User.create(email: 'usegjghjghj1@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
-                         photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
+      user = User.create(email: 'usegjghjghj1@example.com', password: 'password', name: 'Example User1',
+                         posts_counter: 0, photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
 
-      visit "/users/#{User.last.id}/posts"
+      visit "/users/#{user.id}/posts"
 
       expect(page).to have_css('img[src*="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"]')
     end
 
     it 'displays the number of posts' do
-      User.create(email: 'usegdfgfdr1@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
-                  photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
+      user = User.create(email: 'usegdfgfdr1@example.com', password: 'password', name: 'Example User1',
+                         posts_counter: 0, photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
 
-      visit "/users/#{User.last.id}/posts"
+      visit "/users/#{user.id}/posts"
 
       expect(page).to have_content('Number of posts:')
     end
@@ -77,8 +77,6 @@ describe 'post index', type: :feature do
       post1 = Post.create(author: user, title: 'Example title1', text: 'Example subject', comments_counter: 0,
                           likes_counter: 0)
       Post.create(author: user, title: 'Example title2', text: 'Example subject', comments_counter: 0, likes_counter: 0)
-      # Post.create(author: user, title: 'Example title3', text: 'Example subject', comments_counter: 0, likes_counter: 0)
-      # Post.create(author: user, title: 'Example title4', text: 'Example subject', comments_counter: 0, likes_counter: 0)
 
       Comment.create(author: user, post: post1, text: 'Example comment')
 
