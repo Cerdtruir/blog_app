@@ -7,18 +7,11 @@ describe 'user show page', type: :feature do
       User.create(email: 'useadsasdr1@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
                   photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
     end
-    it 'displays the user name' do
+    it 'displays the user info' do
       visit "/users/#{user.id}"
+
       expect(page).to have_content('Example User1')
-    end
-
-    it 'displays the user bio' do
-      visit "/users/#{user.id}"
       expect(page).to have_content('Bio:')
-    end
-
-    it 'displays the user photo' do
-      visit "/users/#{user.id}"
       expect(page).to have_css('img[src*="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"]')
     end
 
@@ -29,14 +22,13 @@ describe 'user show page', type: :feature do
 
     it 'displays the first 3 posts' do
       Post.create(author: user, title: 'Example title1', text: 'Example subject', comments_counter: 0, likes_counter: 0)
-      Post.create(author: user, title: 'Example title2', text: 'Example subject', comments_counter: 0, likes_counter: 0)
-      Post.create(author: user, title: 'Example title3', text: 'Example subject', comments_counter: 0, likes_counter: 0)
-      Post.create(author: user, title: 'Example title4', text: 'Example subject', comments_counter: 0, likes_counter: 0)
+      3.times do
+        Post.create(author: user, title: 'Example title', text: 'Example subject', comments_counter: 0,
+                    likes_counter: 0)
+      end
 
-      visit "/users/#{User.last.id}"
-      expect(page).to have_content('Example title4')
-      expect(page).to have_content('Example title2')
-      expect(page).to have_content('Example title3')
+      visit "/users/#{user.id}"
+      expect(page).to have_content('Example title', count: 3)
       expect(page).to_not have_content('Example title1')
     end
 

@@ -3,14 +3,15 @@ require_relative '../spec_helper'
 
 describe 'user index', type: :feature do
   context 'display index page' do
-    it 'displays the usernames of all users' do
+    before(:each) do
       User.create(email: 'user1123123@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
                   photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
-      User.create(email: 'user1232132@example.com', password: 'password', name: 'Example User2', posts_counter: 0,
-                  photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
-      User.create(email: 'user123123@example.com', password: 'password', name: 'Example User3', posts_counter: 0,
-                  photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
-
+      User.create(email: 'user1232132@example.com', password: 'password', name: 'Example User2', posts_counter: 10,
+                  photo: '1.jpg')
+      User.create(email: 'user123123@example.com', password: 'password', name: 'Example User3', posts_counter: 55,
+                  photo: '2.jpg')
+    end
+    it 'displays the usernames of all users' do
       visit '/users'
 
       expect(page).to have_content('Example User1')
@@ -19,13 +20,6 @@ describe 'user index', type: :feature do
     end
 
     it 'displays the images of all users' do
-      User.create(email: 'user123122341@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
-                  photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
-      User.create(email: 'user464562@example.com', password: 'password', name: 'Example User2', posts_counter: 0,
-                  photo: '1.jpg')
-      User.create(email: 'user3sfsdf@example.com', password: 'password', name: 'Example User3', posts_counter: 0,
-                  photo: '2.jpg')
-
       visit '/users'
 
       expect(page).to have_css('img[src*="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"]')
@@ -34,13 +28,6 @@ describe 'user index', type: :feature do
     end
 
     it 'displays the post counts of all users' do
-      User.create(email: 'usersfsd1@example.com', password: 'password', name: 'Example User1', posts_counter: 0,
-                  photo: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')
-      User.create(email: 'user2sfgsdg@example.com', password: 'password', name: 'Example User2', posts_counter: 10,
-                  photo: '1.jpg')
-      User.create(email: 'usergfhfgh3@example.com', password: 'password', name: 'Example User3', posts_counter: 55,
-                  photo: '2.jpg')
-
       visit '/users'
 
       expect(page).to have_content('Number of posts: 0')
