@@ -1,24 +1,23 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
 
+  before_action :authenticate_user!
+
   def new
-    if user_signed_in?
-      @user = current_user
-      @post = @user.posts.find(params[:post_id])
-      @comment = Comment.new
-    else
-      redirect_to new_user_session_path
-    end
+    @user = current_user
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new
   end
 
   def create
     @user = current_user
-    @post = @user.posts.find(params[:post_id])
+    @username = current_user.name
+    @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to user_post_path(@user, @post), notice: 'Post created successfully'
+      redirect_to user_post_path(@post.author, @post), notice: 'Comment created successfully'
     else
-      flash.notice = 'Error: Post not created'
+      flash.notice = 'Error: Comment not created'
       render :new, status: 422
     end
   end
@@ -33,6 +32,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text).merge(author: @user, post: @post,
-                                                 text: "#{current_user.name}: #{params[:comment][:text]}")
+                                                 text: "#{@username}: #{params[:comment][:text]}")
   end
 end
