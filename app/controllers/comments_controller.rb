@@ -24,6 +24,12 @@ class CommentsController < ApplicationController
     @username = current_user.name
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
+    respond_to do |format|
+      format.html
+      format.json do
+        Comment.create!(comment_params)
+      end
+    end
     if @comment.save
       redirect_to user_post_path(@post.author, @post), notice: 'Comment created successfully'
     else
