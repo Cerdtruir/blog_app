@@ -1,0 +1,79 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic
+security:
+- basicAuth: []
+paths:
+  "/users/{user_id}/posts/{post_id}/comments.json":
+    get:
+      summary: Retrieves all comments
+      tags:
+      - Comments
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Comments retrieved
+    post:
+      summary: Creates a comment
+      tags:
+      - Comments
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Comment created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+              required:
+              - text
+  "/users/{user_id}/posts.json":
+    get:
+      summary: Retrieves all posts
+      tags:
+      - Posts
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Posts retrieved
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000
