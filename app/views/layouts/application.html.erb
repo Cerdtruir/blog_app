@@ -27,8 +27,11 @@
           <li><a href="/users/sign_up">Sign up</a></li>
         <% end %>
       </ul>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% flash.each do |type, msg| %>
+        <div class='flex_block_row'>
+          <%= msg %>
+        </div>
+      <% end %>
       <%= yield %>
     </body>
   </html>
